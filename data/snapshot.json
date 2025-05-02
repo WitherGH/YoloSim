@@ -1,0 +1,55 @@
+{
+  "traders" : [ ],
+  "instruments" : [ {
+    "symbol" : "AAPL",
+    "name" : "Apple Inc.",
+    "price" : 170.0,
+    "type" : "Stock"
+  }, {
+    "symbol" : "MSFT",
+    "name" : "Microsoft Corp.",
+    "price" : 310.5,
+    "type" : "Stock"
+  }, {
+    "symbol" : "GOOGL",
+    "name" : "Alphabet Inc.",
+    "price" : 135.2,
+    "type" : "Stock"
+  }, {
+    "symbol" : "AMZN",
+    "name" : "Amazon.com Inc.",
+    "price" : 155.3,
+    "type" : "Stock"
+  }, {
+    "symbol" : "TSLA",
+    "name" : "Tesla, Inc.",
+    "price" : 215.4,
+    "type" : "Stock"
+  }, {
+    "symbol" : "FB",
+    "name" : "Meta Platforms",
+    "price" : 205.1,
+    "type" : "Stock"
+  }, {
+    "symbol" : "NFLX",
+    "name" : "Netflix, Inc.",
+    "price" : 400.0,
+    "type" : "Stock"
+  }, {
+    "symbol" : "NVDA",
+    "name" : "NVIDIA Corp.",
+    "price" : 400.2,
+    "type" : "Stock"
+  }, {
+    "symbol" : "JPM",
+    "name" : "JPMorgan Chase",
+    "price" : 140.25,
+    "type" : "Stock"
+  }, {
+    "symbol" : "V",
+    "name" : "Visa Inc.",
+    "price" : 230.75,
+    "type" : "Stock"
+  } ],
+  "trades" : [ ]
+}
