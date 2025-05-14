@@ -1,0 +1,19 @@
+#loaderPane {
+  -fx-background-color: #1a0b2a;
+}
+
+.loader-container {
+  -fx-alignment: center;
+}
+
+.loader-container ImageView {
+  -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 15, 0, 0, 0);
+  -fx-opacity: 0.9;
+  opacity: 0.9;
+}
+
+.loader-container .text {
+  -fx-fill: white;
+  -fx-font-family: 'Inter', sans-serif;
+  -fx-font-size: 48px;
+}

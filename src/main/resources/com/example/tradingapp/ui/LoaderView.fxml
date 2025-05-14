@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.tradingapp.ui.LoaderController"
+           fx:id="loaderPane"
+           stylesheets="@style/loader.css">
+    <StackPane styleClass="loader-container">
+        <ImageView fx:id="logoImage" preserveRatio="true" fitWidth="400">
+            <Image url="@images/yolosim.png"/>
+        </ImageView>
+    </StackPane>
+</StackPane> 

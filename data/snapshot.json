@@ -1,55 +1,408 @@
 {
-  "traders" : [ ],
+  "traders" : [ {
+    "name" : "Walter White",
+    "portfolio" : {
+      "holdings" : [ {
+        "instrument" : {
+          "symbol" : "AAPL",
+          "name" : "Apple Inc.",
+          "price" : 250.1449737548828,
+          "type" : "Stock",
+          "priceChange" : -1.778045654296875,
+          "priceChangePercent" : -0.705789275814025,
+          "marketCap" : 3894757.2413635254,
+          "marketCapFormatted" : "$3.89T"
+        },
+        "quantity" : 12.0
+      }, {
+        "instrument" : {
+          "symbol" : "GOOGL",
+          "name" : "Alphabet Inc.",
+          "price" : 189.08224487304688,
+          "type" : "Stock",
+          "priceChange" : -1.9377593994140625,
+          "priceChangePercent" : -1.0144274715071957,
+          "marketCap" : 2420252.734375,
+          "marketCapFormatted" : "$2.42T"
+        },
+        "quantity" : 10.0
+      }, {
+        "instrument" : {
+          "symbol" : "AMZN",
+          "name" : "Amazon.com Inc.",
+          "price" : 420.6565246582031,
+          "type" : "Stock",
+          "priceChange" : -3.323333740234375,
+          "priceChangePercent" : -0.7838423628867891,
+          "marketCap" : 4353795.030212402,
+          "marketCapFormatted" : "$4.35T"
+        },
+        "quantity" : 12.0
+      }, {
+        "instrument" : {
+          "symbol" : "MSFT",
+          "name" : "Microsoft Corp.",
+          "price" : 219.38999938964844,
+          "type" : "Stock",
+          "priceChange" : -1.910003662109375,
+          "priceChangePercent" : -0.8630834323407858,
+          "marketCap" : 1630067.695465088,
+          "marketCapFormatted" : "$1.63T"
+        },
+        "quantity" : 2.0
+      } ]
+    },
+    "budget" : 6707.199630737305
+  }, {
+    "name" : "Олаф",
+    "portfolio" : {
+      "holdings" : [ ]
+    },
+    "budget" : 0.0
+  }, {
+    "name" : "Jake",
+    "portfolio" : {
+      "holdings" : [ {
+        "instrument" : {
+          "symbol" : "AAPL",
+          "name" : "Apple Inc.",
+          "price" : 250.1449737548828,
+          "type" : "Stock",
+          "priceChange" : -1.778045654296875,
+          "priceChangePercent" : -0.705789275814025,
+          "marketCap" : 3894757.2413635254,
+          "marketCapFormatted" : "$3.89T"
+        },
+        "quantity" : 2.0
+      }, {
+        "instrument" : {
+          "symbol" : "GOOGL",
+          "name" : "Alphabet Inc.",
+          "price" : 189.08224487304688,
+          "type" : "Stock",
+          "priceChange" : -1.9377593994140625,
+          "priceChangePercent" : -1.0144274715071957,
+          "marketCap" : 2420252.734375,
+          "marketCapFormatted" : "$2.42T"
+        },
+        "quantity" : 2.0
+      }, {
+        "instrument" : {
+          "symbol" : "NVDA",
+          "name" : "NVIDIA Corp.",
+          "price" : 17.154943466186523,
+          "type" : "Stock",
+          "priceChange" : 1.0481395721435547,
+          "priceChangePercent" : 6.50743362270155,
+          "marketCap" : 42372.71036148071,
+          "marketCapFormatted" : "$42.37B"
+        },
+        "quantity" : 1.0
+      } ]
+    },
+    "budget" : 77.26791381835938
+  } ],
   "instruments" : [ {
     "symbol" : "AAPL",
     "name" : "Apple Inc.",
-    "price" : 170.0,
-    "type" : "Stock"
-  }, {
-    "symbol" : "MSFT",
-    "name" : "Microsoft Corp.",
-    "price" : 310.5,
-    "type" : "Stock"
-  }, {
-    "symbol" : "GOOGL",
-    "name" : "Alphabet Inc.",
-    "price" : 135.2,
-    "type" : "Stock"
+    "price" : 250.1449737548828,
+    "type" : "Stock",
+    "priceChange" : -1.778045654296875,
+    "priceChangePercent" : -0.705789275814025,
+    "marketCap" : 3894757.2413635254,
+    "marketCapFormatted" : "$3.89T"
   }, {
     "symbol" : "AMZN",
     "name" : "Amazon.com Inc.",
-    "price" : 155.3,
-    "type" : "Stock"
+    "price" : 420.6565246582031,
+    "type" : "Stock",
+    "priceChange" : -3.323333740234375,
+    "priceChangePercent" : -0.7838423628867891,
+    "marketCap" : 4353795.030212402,
+    "marketCapFormatted" : "$4.35T"
   }, {
-    "symbol" : "TSLA",
-    "name" : "Tesla, Inc.",
-    "price" : 215.4,
-    "type" : "Stock"
+    "symbol" : "GOOGL",
+    "name" : "Alphabet Inc.",
+    "price" : 189.08224487304688,
+    "type" : "Stock",
+    "priceChange" : -1.9377593994140625,
+    "priceChangePercent" : -1.0144274715071957,
+    "marketCap" : 2420252.734375,
+    "marketCapFormatted" : "$2.42T"
   }, {
-    "symbol" : "FB",
-    "name" : "Meta Platforms",
-    "price" : 205.1,
-    "type" : "Stock"
-  }, {
-    "symbol" : "NFLX",
-    "name" : "Netflix, Inc.",
-    "price" : 400.0,
-    "type" : "Stock"
+    "symbol" : "MSFT",
+    "name" : "Microsoft Corp.",
+    "price" : 219.38999938964844,
+    "type" : "Stock",
+    "priceChange" : -1.910003662109375,
+    "priceChangePercent" : -0.8630834323407858,
+    "marketCap" : 1630067.695465088,
+    "marketCapFormatted" : "$1.63T"
   }, {
     "symbol" : "NVDA",
     "name" : "NVIDIA Corp.",
-    "price" : 400.2,
-    "type" : "Stock"
-  }, {
-    "symbol" : "JPM",
-    "name" : "JPMorgan Chase",
-    "price" : 140.25,
-    "type" : "Stock"
-  }, {
-    "symbol" : "V",
-    "name" : "Visa Inc.",
-    "price" : 230.75,
-    "type" : "Stock"
+    "price" : 134.27764892578125,
+    "type" : "Stock",
+    "priceChange" : -3.19970703125,
+    "priceChangePercent" : -2.327442951586931,
+    "marketCap" : 331665.7928466797,
+    "marketCapFormatted" : "$331.67B"
   } ],
-  "trades" : [ ]
+  "trades" : [ {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:22.947756",
+    "instrument" : {
+      "symbol" : "AAPL",
+      "name" : "Apple Inc.",
+      "price" : 250.1449737548828,
+      "type" : "Stock",
+      "priceChange" : -1.778045654296875,
+      "priceChangePercent" : -0.705789275814025,
+      "marketCap" : 3894757.2413635254,
+      "marketCapFormatted" : "$3.89T"
+    },
+    "type" : "BUY",
+    "quantity" : 12.0,
+    "priceAtTrade" : 250.1449737548828
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:23.8705146",
+    "instrument" : {
+      "symbol" : "GOOGL",
+      "name" : "Alphabet Inc.",
+      "price" : 189.08224487304688,
+      "type" : "Stock",
+      "priceChange" : -1.9377593994140625,
+      "priceChangePercent" : -1.0144274715071957,
+      "marketCap" : 2420252.734375,
+      "marketCapFormatted" : "$2.42T"
+    },
+    "type" : "BUY",
+    "quantity" : 12.0,
+    "priceAtTrade" : 189.08224487304688
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:25.2426219",
+    "instrument" : {
+      "symbol" : "AMZN",
+      "name" : "Amazon.com Inc.",
+      "price" : 420.6565246582031,
+      "type" : "Stock",
+      "priceChange" : -3.323333740234375,
+      "priceChangePercent" : -0.7838423628867891,
+      "marketCap" : 4353795.030212402,
+      "marketCapFormatted" : "$4.35T"
+    },
+    "type" : "BUY",
+    "quantity" : 12.0,
+    "priceAtTrade" : 420.6565246582031
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:27.3492039",
+    "instrument" : {
+      "symbol" : "AMZN",
+      "name" : "Amazon.com Inc.",
+      "price" : 420.6565246582031,
+      "type" : "Stock",
+      "priceChange" : -3.323333740234375,
+      "priceChangePercent" : -0.7838423628867891,
+      "marketCap" : 4353795.030212402,
+      "marketCapFormatted" : "$4.35T"
+    },
+    "type" : "BUY",
+    "quantity" : 2.0,
+    "priceAtTrade" : 420.6565246582031
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:28.4857044",
+    "instrument" : {
+      "symbol" : "MSFT",
+      "name" : "Microsoft Corp.",
+      "price" : 219.38999938964844,
+      "type" : "Stock",
+      "priceChange" : -1.910003662109375,
+      "priceChangePercent" : -0.8630834323407858,
+      "marketCap" : 1630067.695465088,
+      "marketCapFormatted" : "$1.63T"
+    },
+    "type" : "BUY",
+    "quantity" : 2.0,
+    "priceAtTrade" : 219.38999938964844
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:29.3604223",
+    "instrument" : {
+      "symbol" : "NVDA",
+      "name" : "NVIDIA Corp.",
+      "price" : 134.27764892578125,
+      "type" : "Stock",
+      "priceChange" : -3.19970703125,
+      "priceChangePercent" : -2.327442951586931,
+      "marketCap" : 331665.7928466797,
+      "marketCapFormatted" : "$331.67B"
+    },
+    "type" : "BUY",
+    "quantity" : 2.0,
+    "priceAtTrade" : 134.27764892578125
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:30.1678258",
+    "instrument" : {
+      "symbol" : "MSFT",
+      "name" : "Microsoft Corp.",
+      "price" : 219.38999938964844,
+      "type" : "Stock",
+      "priceChange" : -1.910003662109375,
+      "priceChangePercent" : -0.8630834323407858,
+      "marketCap" : 1630067.695465088,
+      "marketCapFormatted" : "$1.63T"
+    },
+    "type" : "BUY",
+    "quantity" : 2.0,
+    "priceAtTrade" : 219.38999938964844
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:31.1189074",
+    "instrument" : {
+      "symbol" : "AAPL",
+      "name" : "Apple Inc.",
+      "price" : 250.1449737548828,
+      "type" : "Stock",
+      "priceChange" : -1.778045654296875,
+      "priceChangePercent" : -0.705789275814025,
+      "marketCap" : 3894757.2413635254,
+      "marketCapFormatted" : "$3.89T"
+    },
+    "type" : "BUY",
+    "quantity" : 2.0,
+    "priceAtTrade" : 250.1449737548828
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:31.413638",
+    "instrument" : {
+      "symbol" : "AAPL",
+      "name" : "Apple Inc.",
+      "price" : 250.1449737548828,
+      "type" : "Stock",
+      "priceChange" : -1.778045654296875,
+      "priceChangePercent" : -0.705789275814025,
+      "marketCap" : 3894757.2413635254,
+      "marketCapFormatted" : "$3.89T"
+    },
+    "type" : "SELL",
+    "quantity" : 2.0,
+    "priceAtTrade" : 250.1449737548828
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:32.6795792",
+    "instrument" : {
+      "symbol" : "GOOGL",
+      "name" : "Alphabet Inc.",
+      "price" : 189.08224487304688,
+      "type" : "Stock",
+      "priceChange" : -1.9377593994140625,
+      "priceChangePercent" : -1.0144274715071957,
+      "marketCap" : 2420252.734375,
+      "marketCapFormatted" : "$2.42T"
+    },
+    "type" : "SELL",
+    "quantity" : 2.0,
+    "priceAtTrade" : 189.08224487304688
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:33.640575",
+    "instrument" : {
+      "symbol" : "AMZN",
+      "name" : "Amazon.com Inc.",
+      "price" : 420.6565246582031,
+      "type" : "Stock",
+      "priceChange" : -3.323333740234375,
+      "priceChangePercent" : -0.7838423628867891,
+      "marketCap" : 4353795.030212402,
+      "marketCapFormatted" : "$4.35T"
+    },
+    "type" : "SELL",
+    "quantity" : 2.0,
+    "priceAtTrade" : 420.6565246582031
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:34.9578661",
+    "instrument" : {
+      "symbol" : "MSFT",
+      "name" : "Microsoft Corp.",
+      "price" : 219.38999938964844,
+      "type" : "Stock",
+      "priceChange" : -1.910003662109375,
+      "priceChangePercent" : -0.8630834323407858,
+      "marketCap" : 1630067.695465088,
+      "marketCapFormatted" : "$1.63T"
+    },
+    "type" : "SELL",
+    "quantity" : 2.0,
+    "priceAtTrade" : 219.38999938964844
+  }, {
+    "traderName" : "Walter White",
+    "timestamp" : "2025-05-14T03:08:36.1654215",
+    "instrument" : {
+      "symbol" : "NVDA",
+      "name" : "NVIDIA Corp.",
+      "price" : 134.27764892578125,
+      "type" : "Stock",
+      "priceChange" : -3.19970703125,
+      "priceChangePercent" : -2.327442951586931,
+      "marketCap" : 331665.7928466797,
+      "marketCapFormatted" : "$331.67B"
+    },
+    "type" : "SELL",
+    "quantity" : 2.0,
+    "priceAtTrade" : 134.27764892578125
+  }, {
+    "traderName" : "Jake",
+    "timestamp" : "2025-05-14T01:59:39.0562005",
+    "instrument" : {
+      "symbol" : "AAPL",
+      "name" : "Apple Inc.",
+      "price" : 250.1449737548828,
+      "type" : "Stock",
+      "priceChange" : -1.778045654296875,
+      "priceChangePercent" : -0.705789275814025,
+      "marketCap" : 3894757.2413635254,
+      "marketCapFormatted" : "$3.89T"
+    },
+    "type" : "BUY",
+    "quantity" : 2.0,
+    "priceAtTrade" : 250.1449737548828
+  }, {
+    "traderName" : "Jake",
+    "timestamp" : "2025-05-14T01:59:44.4133069",
+    "instrument" : {
+      "symbol" : "GOOGL",
+      "name" : "Alphabet Inc.",
+      "price" : 189.08224487304688,
+      "type" : "Stock",
+      "priceChange" : -1.9377593994140625,
+      "priceChangePercent" : -1.0144274715071957,
+      "marketCap" : 2420252.734375,
+      "marketCapFormatted" : "$2.42T"
+    },
+    "type" : "BUY",
+    "quantity" : 2.0,
+    "priceAtTrade" : 189.08224487304688
+  }, {
+    "traderName" : "Jake",
+    "timestamp" : "2025-05-14T02:45:25.8615549",
+    "instrument" : {
+      "symbol" : "NVDA",
+      "name" : "NVIDIA Corp.",
+      "price" : 17.154943466186523,
+      "type" : "Stock",
+      "priceChange" : 1.0481395721435547,
+      "priceChangePercent" : 6.50743362270155,
+      "marketCap" : 42372.71036148071,
+      "marketCapFormatted" : "$42.37B"
+    },
+    "type" : "BUY",
+    "quantity" : 1.0,
+    "priceAtTrade" : 134.27764892578125
+  } ]
 }

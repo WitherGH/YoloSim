@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.tradingapp.ui.ProfileController">
+    
+    <VBox spacing="10">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+
+        <Label fx:id="profileTitle" styleClass="section-title" text="Profile"/>
+
+        <Label text="Select Trader:" styleClass="labelTitle"/>
+
+        <HBox spacing="5">
+            <ComboBox fx:id="cmbTraders" styleClass="combo-box"/>
+            <Button fx:id="btnAddTrader"    text="Add Trader"/>
+            <Button fx:id="btnEditTrader"   text="Rename Trader"/>
+            <Button fx:id="btnDeleteTrader" text="Delete Trader"/>
+        </HBox>
+        
+        <!-- Budget Management Section -->
+        <Label text="Budget Management:" styleClass="labelTitle"/>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Set Budget:" />
+            <TextField fx:id="txtBudget" promptText="Enter amount" prefWidth="150" />
+            <Button fx:id="btnSetBudget" text="Confirm" />
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+        
+        <HBox spacing="5">
+            <Label text="Available Trading Budget:" />
+            <Label fx:id="lblBudget" text="0.00" styleClass="balance-amount" />
+        </HBox>
+
+        <Label text="Holdings:" styleClass="labelTitle"/>
+        
+        <HBox spacing="5">
+            <Label text="Sort:" />
+            <Button fx:id="btnSortBySymbol" text="Symbol" />
+            <Button fx:id="btnSortByQuantity" text="Quantity" />
+            <Button fx:id="btnSortByPrice" text="Price" />
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <TableView fx:id="tblHoldings" prefHeight="200">
+            <styleClass>
+                <String fx:value="tableView"/>
+            </styleClass>
+            <columns>
+                <TableColumn fx:id="colHoldSym"   text="Symbol"   prefWidth="100"/>
+                <TableColumn fx:id="colHoldQty"   text="Quantity" prefWidth="100"/>
+                <TableColumn fx:id="colHoldPrice" text="Price"    prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Balance Section with Portfolio and Total Balance -->
+        <VBox spacing="5">
+            <Label text="Financial Summary:" styleClass="labelTitle"/>
+            <HBox spacing="5">
+                <Label text="Stocks Portfolio Balance:" />
+                <Label fx:id="lblPortfolioBalance" text="0.00" styleClass="balance-amount"/>
+            </HBox>
+            <HBox spacing="5">
+                <Label text="Budget Remaining:" />
+                <Label fx:id="lblBudgetRemaining" text="0.00" styleClass="balance-amount"/>
+            </HBox>
+            <HBox spacing="5">
+                <Label text="Balance Overall:" />
+                <Label fx:id="lblTotalBalance" text="0.00" styleClass="balance-amount"/>
+            </HBox>
+        </VBox>
+    </VBox>
+    
+    <ImageView fitWidth="60" preserveRatio="true" StackPane.alignment="TOP_RIGHT" styleClass="corner-logo">
+        <Image url="@images/yolosim.png"/>
+    </ImageView>
+</StackPane>

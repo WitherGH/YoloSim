@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Priority?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.tradingapp.ui.MainController"
+      stylesheets="@style/styles.css">
+
+    <HBox styleClass="main-container">
+        <!-- Sidebar -->
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250" maxWidth="250">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+            <Button fx:id="btnHideSidebar" text="≡" styleClass="sidebar-burger" />
+
+            <!-- Profile Section -->
+            <VBox fx:id="profileSection" styleClass="sidebar-section expanded">
+                <Button fx:id="profileHeader" text="Profile" styleClass="sidebar-header" onAction="#toggleProfileSection" />
+                <VBox fx:id="profileButtons">
+                    <Button fx:id="btnProfile" text="My Profile" styleClass="sidebar-button" onAction="#openProfile"/>
+                    <Button fx:id="btnTradeHistory" text="Trades History" styleClass="sidebar-button" onAction="#openTrades"/>
+                </VBox>
+            </VBox>
+
+            <!-- Instruments Section -->
+            <VBox fx:id="instrumentsSection" styleClass="sidebar-section expanded">
+                <Button fx:id="instrumentsHeader" text="Instruments" styleClass="sidebar-header" onAction="#toggleInstrumentsSection" />
+                <VBox fx:id="instrumentsButtons">
+                    <Button fx:id="btnStocks" text="Stocks" styleClass="sidebar-button" onAction="#openStocks"/>
+                </VBox>
+            </VBox>
+
+            <!-- Charts Section -->
+            <VBox fx:id="chartsSection" styleClass="sidebar-section expanded">
+                <Button fx:id="chartsHeader" text="Analysis" styleClass="sidebar-header" onAction="#toggleChartsSection" />
+                <VBox fx:id="chartsButtons">
+                    <Button fx:id="btnCharts" text="Charts" styleClass="sidebar-button" onAction="#openCharts"/>
+                </VBox>
+            </VBox>
+
+            <!-- Manage Data Section -->
+            <VBox fx:id="manageDataSection" styleClass="sidebar-section expanded">
+                <Button fx:id="manageDataHeader" text="Manage Data" styleClass="sidebar-header" onAction="#toggleManageDataSection" />
+                <VBox fx:id="manageDataButtons">
+                    <Button fx:id="btnLoadData" text="Import Data" styleClass="sidebar-button"/>
+                    <Button fx:id="btnSaveData" text="Export Data" styleClass="sidebar-button"/>
+                </VBox>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+        <!-- Main Content Area -->
+        <StackPane fx:id="mainContainer" styleClass="content-area" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+        </StackPane>
+    </HBox>
+
+    <Button fx:id="btnShowSidebar" text="≡" styleClass="burger-icon-floating" visible="false" managed="false" StackPane.alignment="TOP_LEFT"/>
+
+</StackPane> 

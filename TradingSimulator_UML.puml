@@ -1,0 +1,447 @@
+@startuml TradingSimulator
+
+' Style settings for better aesthetics
+skinparam backgroundColor white
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam packageFontStyle plain
+skinparam arrowColor #33658A
+skinparam classBorderColor #2F4858
+skinparam classBackgroundColor #F6F8FF
+skinparam packageBackgroundColor #EEF2FF
+skinparam packageBorderColor #86BBD8
+skinparam titleFontSize 20
+skinparam titleFontStyle bold
+
+' Enhanced arrow styling
+skinparam arrowThickness 2
+skinparam linetype ortho
+skinparam nodesep 80
+skinparam ranksep 100
+
+title Trading Simulator - Class Diagram
+
+' Main application
+class MainApp {
+  +main(String[] args): void
+  +start(Stage stage): void
+  -initializeAppData(): void
+  +stop(): void
+}
+
+' Model classes
+package "Model" {
+  class Trader {
+    -name: String
+    -portfolio: Portfolio
+    -tradesList: CustomLinkedList<Trade>
+    -budget: DoubleProperty
+    +Trader(String name)
+    +getName(): String
+    +setName(String): void
+    +getPortfolio(): Portfolio
+    +getTradesList(): CustomLinkedList<Trade>
+    +getBudget(): double
+    +setBudget(double): void
+    +budgetProperty(): DoubleProperty
+    +hasSufficientBudget(double): boolean
+    +deductFromBudget(double): boolean
+    +addToBudget(double): void
+    +calculateTotalValue(): double
+    +toString(): String
+  }
+
+  class Portfolio {
+    -holdings: ObservableList<Holding>
+    +Portfolio()
+    +getHoldings(): ObservableList<Holding>
+    +calculateTotalBalance(): double
+  }
+
+  class Holding {
+    -instrument: Instrument
+    -quantity: double
+    +Holding(Instrument, double)
+    +getInstrument(): Instrument
+    +setInstrument(Instrument): void
+    +getQuantity(): double
+    +setQuantity(double): void
+    +calculateValue(): double
+  }
+
+  class Instrument {
+    -symbol: StringProperty
+    -name: StringProperty
+    -price: DoubleProperty
+    -type: StringProperty
+    -priceChange: DoubleProperty
+    -priceChangePercent: DoubleProperty
+    -marketCap: DoubleProperty
+    -marketCapFormatted: StringProperty
+    +Instrument(String, String, double, String)
+    +getSymbol(): String
+    +setSymbol(String): void
+    +symbolProperty(): StringProperty
+    +getName(): String
+    +setName(String): void
+    +nameProperty(): StringProperty
+    +getPrice(): double
+    +setPrice(double): void
+    +priceProperty(): DoubleProperty
+    +getType(): String
+    +setType(String): void
+    +typeProperty(): StringProperty
+    +getPriceChange(): double
+    +setPriceChange(double): void
+    +priceChangeProperty(): DoubleProperty
+    +getPriceChangePercent(): double
+    +setPriceChangePercent(double): void
+    +priceChangePercentProperty(): DoubleProperty
+    +isStock(): boolean
+    +isCrypto(): boolean
+    +getPriceChangeFormatted(): String
+    +toString(): String
+  }
+
+  class Trade {
+    -traderName: String
+    -timestamp: LocalDateTime
+    -instrument: Instrument
+    -type: TradeType
+    -quantity: double
+    -priceAtTrade: double
+    +Trade(String, Instrument, TradeType, double, double)
+    +getTraderName(): String
+    +setTraderName(String): void
+    +getTimestamp(): LocalDateTime
+    +setTimestamp(LocalDateTime): void
+    +getInstrument(): Instrument
+    +setInstrument(Instrument): void
+    +getType(): TradeType
+    +setType(TradeType): void
+    +getQuantity(): double
+    +setQuantity(double): void
+    +getPriceAtTrade(): double
+    +setPriceAtTrade(double): void
+    +toString(): String
+  }
+
+  enum TradeType {
+    BUY
+    SELL
+  }
+}
+
+' Services
+package "Service" {
+  class TraderService {
+    -instance: TraderService {static}
+    -traders: ObservableList<Trader>
+    -selectedTrader: ObjectProperty<Trader>
+    -TraderService()
+    +getInstance(): TraderService {static}
+    +getTraders(): ObservableList<Trader>
+    +getSelectedTrader(): Trader
+    +setSelectedTrader(Trader): void
+    +selectedTraderProperty(): ObjectProperty<Trader>
+    +createTrader(String): void
+    +deleteTrader(Trader): void
+    +renameTrader(Trader, String): void
+    +executeTrade(Trader, Trade): void
+    +deleteTrade(Trader, Trade): boolean
+    -recalculatePortfolio(Trader): void
+    +getAllTraders(): List<Trader>
+    +getAllTrades(): List<Trade>
+    +setAllTraders(List<Trader>): void
+    +setAllTrades(List<Trade>): void
+  }
+
+  class InstrumentService {
+    -instance: InstrumentService {static}
+    -stocks: ObservableList<Instrument>
+    -InstrumentService()
+    +getInstance(): InstrumentService {static}
+    +getStocks(): ObservableList<Instrument>
+    +getAllInstruments(): List<Instrument>
+    +findBySymbol(String): Instrument
+  }
+
+  class MarketDataService {
+    -stockDataService: StockDataService
+    -rnd: Random
+    -lastKnownPrices: Map<String, Double>
+    -randomWalk(double): double
+    +getPrice(Instrument): double
+    +getOHLC(String, String, int): List<OHLC>
+  }
+
+  class OHLC {
+    -time: LocalDateTime
+    -open: double
+    -close: double
+    -high: double
+    -low: double
+    +OHLC(LocalDateTime, double, double, double, double)
+    +getTime(): LocalDateTime
+    +getOpen(): double
+    +getClose(): double
+    +getHigh(): double
+    +getLow(): double
+  }
+
+  class StockDataService {
+    -instance: StockDataService {static}
+    -currentDate: LocalDate
+    -StockDataService()
+    +getInstance(): StockDataService {static}
+    +getCurrentDate(): LocalDate
+    +getLastPrice(String): double
+    +getOHLCForDay(String, LocalDate): List<OHLC>
+  }
+
+  class PersistenceService {
+    +save(DataSnapshot): void
+    +load(): DataSnapshot
+  }
+}
+
+' UI Controllers
+package "UI" {
+  class MainController {
+    -tabPane: TabPane
+    -profileController: ProfileController
+    -instrumentsController: InstrumentsController
+    -tradesController: TradesController
+    -chartsController: ChartsController
+    +initialize(): void
+  }
+
+  class ProfileController {
+    -traderService: TraderService
+    -lblTraderName: Label
+    -lblTotalValue: Label
+    -lblBudget: Label
+    -txtBudget: TextField
+    -tblHoldings: TableView<Holding>
+    +initialize(): void
+    -setupTableColumns(): void
+    -refreshHoldings(): void
+    -setTraderBudget(): void
+  }
+
+  class InstrumentsController {
+    -traderService: TraderService
+    -instrumentService: InstrumentService
+    -marketDataService: MarketDataService
+    -tblInstruments: TableView<Instrument>
+    -btnBuy: Button
+    -btnSell: Button
+    -txtQuantity: TextField
+    -txtPrice: TextField
+    +initialize(): void
+    -setupTableColumns(): void
+    -executeTrade(TradeType): void
+    -refreshPrices(): void
+  }
+
+  class TradesController {
+    -traderService: TraderService
+    -tblTrades: TableView<Trade>
+    -cmbTraders: ComboBox<Trader>
+    +initialize(): void
+    -setupTableColumns(): void
+    -setupTraderComboBox(): void
+    -setupButtonHandlers(): void
+    -refreshTrades(): void
+    -showAllTrades(): void
+    -filterTradesByType(TradeType): void
+    -sortTradesBySymbol(): void
+    -sortTradesByQuantity(): void
+    -sortTradesByPrice(): void
+    -sortTradesByTotal(): void
+    -findBySymbol(): void
+    -deleteTrade(): void
+  }
+
+  class ChartsController {
+    -marketDataService: MarketDataService
+    -instrumentService: InstrumentService
+    -cmbSymbols: ComboBox<String>
+    -chartContainer: StackPane
+    -candleChart: CandleStickChart
+    +initialize(): void
+    -setupSymbolCombo(): void
+    -setupChart(): void
+    -loadChartData(String): void
+  }
+
+  class CandleStickChart {
+    -priceLine: Polyline
+    -fillArea: Polygon
+    -showPriceLine: boolean
+    -showAreaFill: boolean
+    -lineColor: Color
+    -fillColor: Color
+    +CandleStickChart()
+    +CandleStickChart(Axis<String>, Axis<Number>)
+    +setShowPriceLine(boolean): void
+    +setShowAreaFill(boolean): void
+    +setLineColor(Color): void
+    +setFillColor(Color): void
+    #layoutPlotChildren(): void
+    -getAreaClosePoints(List<Double>, double): List<Double>
+  }
+
+  class LoaderController {
+    -progressBar: ProgressBar
+    -statusLabel: Label
+    +initialize(): void
+    +updateProgress(double, String): void
+  }
+}
+
+' Persistence
+package "Persistence" {
+  class DataSnapshot {
+    +traders: List<Trader>
+    +instruments: List<Instrument>
+    +trades: List<Trade>
+    +DataSnapshot(List<Trader>, List<Instrument>, List<Trade>)
+  }
+}
+
+' Utility classes
+package "Util" {
+  class UIThreadUtil {
+    -instance: Executor {static}
+    +runOnUIThread(Runnable): void {static}
+    +runInBackground(Runnable): void {static}
+    +shutdown(): void {static}
+  }
+
+  class SearchUtils {
+    +containsIgnoreCase(String, String): boolean {static}
+  }
+
+  class SortUtils {
+    +sortByPrice(List<T>, boolean): void {static}
+    +sortByQuantity(List<T>, boolean): void {static}
+    +sortBySymbol(List<T>, boolean): void {static}
+    +sortByTotal(List<T>, boolean): void {static}
+  }
+}
+
+' Data structures
+package "DataStructures" {
+  class CustomLinkedList<T> {
+    -head: Node<T>
+    -tail: Node<T>
+    -size: int
+    +CustomLinkedList()
+    +add(T): void
+    +remove(T): boolean
+    +toList(): List<T>
+    +clear(): void
+    +size(): int
+    +iterator(): Iterator<T>
+  }
+
+  class "CustomLinkedList$Node" {
+    -data: T
+    -next: Node<T>
+    +Node(T)
+  }
+}
+
+' Legend
+legend right
+  Relationship Types:
+  ---- Association (basic relationship)
+  <---> Bidirectional association
+  <|--- Inheritance/Implementation
+  *---> Composition (strong ownership)
+  o---> Aggregation (weak ownership)
+  ..>   Dependency (uses temporarily)
+  <..|> Realization (implements interface)
+endlegend
+
+' Group classes to reduce overlapping
+together {
+  class Trader
+  class Portfolio
+  class CustomLinkedList
+}
+
+together {
+  class MarketDataService
+  class StockDataService
+  class OHLC
+}
+
+together {
+  class InstrumentsController
+  class TradesController
+  class ProfileController
+}
+
+' Relationships with proper types
+
+' Model relationships with adjusted layout
+Trader *-right-> "1" Portfolio : has >
+Trader *-down-> "0..*" Trade : history >
+Portfolio o-right-> "0..*" Holding : contains >
+Holding o-right-> "1" Instrument : references >
+Trade o-up-> "1" Instrument : references >
+Trade *-right-> "1" TradeType : has >
+
+' Service relationships - Singleton pattern
+TraderService o-down-> "0..*" Trader : manages >
+TraderService o-left-> "1" Trader : < selects
+InstrumentService o-down-> "0..*" Instrument : manages >
+MarketDataService ..right-> StockDataService : uses >
+MarketDataService ..down-> OHLC : creates >
+StockDataService -down-> OHLC : returns >
+
+' UI relationships
+MainController *-right-> "1" ProfileController : manages >
+MainController *-down-> "1" InstrumentsController : manages >
+MainController *-left-> "1" TradesController : manages >
+MainController *-up-> "1" ChartsController : manages >
+ProfileController ..right-> TraderService : uses >
+InstrumentsController ..up-> TraderService : uses >
+InstrumentsController ..right-> InstrumentService : uses >
+InstrumentsController ..down-> MarketDataService : uses >
+TradesController ..left-> TraderService : uses >
+ChartsController ..up-> MarketDataService : uses >
+ChartsController ..right-> InstrumentService : uses >
+ChartsController *-down-> "1" CandleStickChart : uses >
+
+' Persistence relationships
+PersistenceService ..down-> DataSnapshot : creates/loads >
+DataSnapshot o-right-> "0..*" Trader : contains >
+DataSnapshot o-down-> "0..*" Instrument : contains >
+DataSnapshot o-left-> "0..*" Trade : contains >
+
+' Application relationships
+MainApp ..right-> PersistenceService : uses >
+MainApp ..down-> TraderService : uses >
+MainApp ..left-> InstrumentService : uses >
+MainApp ..up-> UIThreadUtil : uses >
+
+' Data structure relationships
+Trader *-left-> "1" CustomLinkedList : uses >
+CustomLinkedList *-left-> "0..*" "CustomLinkedList$Node" : contains >
+
+' Utility relationships with adjusted layout
+TradesController .left.> SearchUtils : uses >
+TradesController .down.> SortUtils : uses >
+InstrumentsController .right.> SearchUtils : uses >
+ProfileController .up.> SortUtils : uses >
+MainApp .right.> UIThreadUtil : uses >
+TraderService .up.> UIThreadUtil : uses >
+InstrumentService .right.> SearchUtils : uses >
+
+@enduml 

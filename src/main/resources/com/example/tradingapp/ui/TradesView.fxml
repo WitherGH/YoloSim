@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.tradingapp.ui.TradesController">
+    <VBox spacing="10">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
 
-</AnchorPane>
+        <Label styleClass="section-title" text="Trades History"/>
+
+        <Label text="Select Trader:" styleClass="labelTitle"/>
+
+        <HBox spacing="5">
+            <ComboBox fx:id="cmbTraders" styleClass="combo-box"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <TextField fx:id="txtSearchSymbol" promptText="Enter symbol to find"/>
+            <Button fx:id="btnFindSymbol" text="Find"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnDeleteTrade" text="Delete Trade" styleClass="button-delete"/>
+        </HBox>
+
+        <HBox spacing="5">
+            <Label text="Filter:" />
+            <Button fx:id="btnFilterAll" text="All Trades" styleClass="button"/>
+            <Button fx:id="btnFilterBuy" text="Buys Only" styleClass="button"/>
+            <Button fx:id="btnFilterSell" text="Sells Only" styleClass="button"/>
+        </HBox>
+        
+        <HBox spacing="5">
+            <Label text="Sort:" />
+            <Button fx:id="btnSortBySymbol" text="Symbol" />
+            <Button fx:id="btnSortByQuantity" text="Quantity" />
+            <Button fx:id="btnSortByPrice" text="Price" />
+            <Button fx:id="btnSortByTotal" text="Total" />
+        </HBox>
+
+        <TableView fx:id="tblTrades" VBox.vgrow="ALWAYS">
+            <styleClass>
+                <String fx:value="tableView"/>
+            </styleClass>
+            <columns>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                <TableColumn fx:id="colSymbol" text="Symbol" prefWidth="100"/>
+                <TableColumn fx:id="colQty" text="Quantity" prefWidth="100"/>
+                <TableColumn fx:id="colPrice" text="Price" prefWidth="100"/>
+                <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
+                <TableColumn fx:id="colTotal" text="Total" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+    
+    <ImageView fitWidth="60" preserveRatio="true" StackPane.alignment="TOP_RIGHT" styleClass="corner-logo">
+        <Image url="@images/yolosim.png"/>
+    </ImageView>
+</StackPane>

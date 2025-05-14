@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.tradingapp.ui.InstrumentsController">
+    <VBox spacing="10" prefHeight="Infinity">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
 
-</AnchorPane>
+        <Label fx:id="sectionTitle" styleClass="section-title" text="Instruments"/>
+
+        <!-- Trader selection -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Select Trader:" styleClass="labelTitle"/>
+            <ComboBox fx:id="cmbTraders" styleClass="combo-box"/>
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Select Date:" styleClass="labelTitle"/>
+            <DatePicker fx:id="datePicker"/>
+        </HBox>
+
+        <!-- Stocks Section with sorting controls -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Stocks:" styleClass="labelTitle"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Sort:" styleClass="labelTitle"/>
+            <Button fx:id="btnSortBySymbol" text="Symbol"/>
+            <Button fx:id="btnSortByName" text="Name"/>
+            <Button fx:id="btnSortByPrice" text="Price"/>
+        </HBox>
+        
+        <VBox fx:id="stockSection" spacing="5" VBox.vgrow="ALWAYS">
+            <TableView fx:id="stockTable" VBox.vgrow="ALWAYS" styleClass="tableView">
+                <columns>
+                    <TableColumn fx:id="colStockSymbol" text="Symbol" prefWidth="100"/>
+                    <TableColumn fx:id="colStockName" text="Name" prefWidth="150"/>
+                    <TableColumn fx:id="colStockPrice" text="Price" prefWidth="100"/>
+                    <TableColumn fx:id="colStockChange" text="Change" prefWidth="150"/>
+                    <TableColumn fx:id="colStockMarketCap" text="Market Cap" prefWidth="120"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="lblSelected" text="Selected: none" styleClass="labelTitle"/>
+                <TextField fx:id="txtQuantity" promptText="Qty" prefWidth="60"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnBuy" text="Buy" disable="true"/>
+                <Button fx:id="btnSell" text="Sell" disable="true"/>
+            </HBox>
+        </VBox>
+    </VBox>
+    
+    <ImageView fitWidth="60" preserveRatio="true" StackPane.alignment="TOP_RIGHT" styleClass="corner-logo">
+        <Image url="@images/yolosim.png"/>
+    </ImageView>
+</StackPane>

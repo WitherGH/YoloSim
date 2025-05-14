@@ -1,11 +1,16 @@
-module com.example.tradingsim {
+module com.example.tradingapp {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires com.dlsc.formsfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.annotation;
+    requires com.fasterxml.jackson.datatype.jsr310;
+    requires java.net.http;
 
-    opens com.example.tradingsim to javafx.fxml;
-    exports com.example.tradingsim;
+
+    opens com.example.tradingapp.ui to javafx.fxml;
+    opens com.example.tradingapp to javafx.graphics;
+    opens com.example.tradingapp.model to com.fasterxml.jackson.databind;
+    opens com.example.tradingapp.persistence to com.fasterxml.jackson.databind;
 }
