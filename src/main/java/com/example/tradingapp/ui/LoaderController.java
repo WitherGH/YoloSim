@@ -16,16 +16,13 @@ public class LoaderController {
     
     @FXML
     public void initialize() {
-        // Створюємо комбіновану анімацію для зображення
         setupAnimations(logoImage);
     }
     
     private void setupAnimations(ImageView imageView) {
-        // Створюємо ефект Gaussian blur з початковим значенням
         GaussianBlur blur = new GaussianBlur(0);
         imageView.setEffect(blur);
         
-        // 1. Анімація blur
         Timeline blurTimeline = new Timeline(
             new KeyFrame(Duration.ZERO, 
                 new KeyValue(blur.radiusProperty(), 0, Interpolator.EASE_BOTH)),
@@ -35,8 +32,7 @@ public class LoaderController {
                 new KeyValue(blur.radiusProperty(), 0, Interpolator.EASE_BOTH))
         );
         
-        // 2. Анімація пульсації розміру
-        // Запам'ятовуємо початковий розмір
+
         double originalWidth = imageView.getFitWidth();
         
         Timeline pulseTimeline = new Timeline(
@@ -48,11 +44,9 @@ public class LoaderController {
                 new KeyValue(imageView.fitWidthProperty(), originalWidth, Interpolator.EASE_BOTH))
         );
         
-        // Об'єднуємо анімації
         ParallelTransition parallelTransition = new ParallelTransition(blurTimeline, pulseTimeline);
         parallelTransition.setCycleCount(Animation.INDEFINITE);
         
-        // Запускаємо анімацію
         parallelTransition.play();
         
         System.out.println("Logo animations started with original width: " + originalWidth);
