@@ -1,7 +1,9 @@
 package com.example.tradingapp.ui;
 
 import com.example.tradingapp.model.Holding;
+import com.example.tradingapp.model.Instrument;
 import com.example.tradingapp.model.Trader;
+import com.example.tradingapp.service.StockDataService;
 import com.example.tradingapp.service.TraderService;
 import com.example.tradingapp.util.SortUtils;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -10,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -28,6 +31,7 @@ public class ProfileController {
     @FXML private TableColumn<Holding, Number> colHoldQty;
     @FXML private TableColumn<Holding, Number> colHoldPrice;
     @FXML private Label profileTitle;
+    @FXML private DatePicker datePicker;
     
     @FXML private TextField txtBudget;
     @FXML private Button btnSetBudget;
@@ -37,6 +41,7 @@ public class ProfileController {
     @FXML private Label lblTotalBalance;
 
     private final TraderService traderService = TraderService.getInstance();
+    private final StockDataService stockDataService = StockDataService.getInstance();
 
     @FXML
     public void initialize() {
@@ -106,12 +111,49 @@ public class ProfileController {
         btnSortByPrice.setOnAction(e -> sortHoldingsByPrice());
         
         setupBudgetControls();
+        setupDatePicker();
 
         if (profileTitle != null) {
             profileTitle.setText("Profile");
         }
     }
     
+    private void setupDatePicker() {
+        datePicker.setValue(stockDataService.getCurrentDate());
+        
+        datePicker.valueProperty().addListener((obs, oldDate, newDate) -> {
+            if (newDate != null) {
+                updateStocksForDate(newDate);
+                refreshPortfolioView();
+            }
+        });
+    }
+    
+    private void refreshPortfolioView() {
+        Trader trader = traderService.getSelectedTrader();
+        if (trader != null) {
+            for (Holding holding : trader.getPortfolio().getHoldings()) {
+                Instrument instrument = holding.getInstrument();
+                double price = stockDataService.getLastPrice(instrument.getSymbol());
+                if (!Double.isNaN(price)) {
+                    instrument.setPrice(price);
+                }
+            }
+            
+            colHoldSym.setCellValueFactory(c -> c.getValue().getInstrument().symbolProperty());
+            colHoldQty.setCellValueFactory(c -> c.getValue().quantityProperty());
+            colHoldPrice.setCellValueFactory(c ->
+                    new SimpleDoubleProperty(c.getValue().getInstrument().getPrice())
+            );
+            
+            tblHoldings.refresh();
+            updateBalanceDisplay(trader);
+        }
+    }
+    
+    private void updateStocksForDate(LocalDate date) {
+        stockDataService.setCurrentDate(date);
+    }
 
     private void setupBudgetControls() {
         btnSetBudget.setOnAction(e -> {
@@ -180,8 +222,6 @@ public class ProfileController {
     }
     
     
-     //Updates all balance-related displays
-     
     private void updateBalanceDisplay(Trader trader) {
         if (trader == null) {
             lblBudget.setText("0.00");
@@ -191,7 +231,14 @@ public class ProfileController {
             return;
         }
         
-        double portfolioBalance = trader.getPortfolio().calculateTotalBalance();
+        double portfolioBalance = 0.0;
+        
+        for (Holding holding : trader.getPortfolio().getHoldings()) {
+            double price = holding.getInstrument().getPrice();
+            double quantity = holding.getQuantity();
+            portfolioBalance += price * quantity;
+        }
+        
         double budget = trader.getBudget();
         double totalBalance = portfolioBalance + budget;
         
@@ -209,18 +256,11 @@ public class ProfileController {
             return;
         }
 
-        //set the selected trader in TraderService so it's available globally
         traderService.setSelectedTrader(trader);
-
         profileTitle.setText("Profile of " + trader.getName());
-        tblHoldings.setItems(trader.getPortfolio().getHoldings());
         
-        colHoldSym.setCellValueFactory(c -> c.getValue().getInstrument().symbolProperty());
-        colHoldQty.setCellValueFactory(c -> c.getValue().quantityProperty());
-        colHoldPrice.setCellValueFactory(c ->
-                new SimpleDoubleProperty(c.getValue().getInstrument().getPrice())
-        );
-        updateBalanceDisplay(trader);
+        tblHoldings.setItems(trader.getPortfolio().getHoldings());
+        refreshPortfolioView();
     }
 
     private boolean confirmYes(String message) {

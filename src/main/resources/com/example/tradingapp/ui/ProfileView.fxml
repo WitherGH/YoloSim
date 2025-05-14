@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.control.DatePicker?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.tradingapp.ui.ProfileController">
@@ -76,6 +77,11 @@
                 <Label fx:id="lblTotalBalance" text="0.00" styleClass="balance-amount"/>
             </HBox>
         </VBox>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Select Date:"/>
+            <DatePicker fx:id="datePicker"/>
+        </HBox>
     </VBox>
     
     <ImageView fitWidth="60" preserveRatio="true" StackPane.alignment="TOP_RIGHT" styleClass="corner-logo">
